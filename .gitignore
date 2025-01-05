@@ -1,6 +1,8 @@
 # Ignore the virtual environment folder
 venv/
 
+*.log 
+
 # Ignore Python bytecode files
 __pycache__/
 *.py[cod]

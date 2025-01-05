@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>{{ quiz.title }}</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+</head>
+<body>
+<div class="container">
+    <h1>{{ quiz.title }}</h1>
+    <p>{{ quiz.description }}</p>
+    <ul>
+        {% for question in quiz.question_set.all %}
+            <li>{{ question.text }}</li>
+        {% endfor %}
+    </ul>
+    <form method="post" action="{% url 'submit_quiz' quiz.id %}">
+        {% csrf_token %}
+        {% for question in quiz.question_set.all %}
+            <div class="form-group">
+                <label>{{ question.text }}</label>
+                <div>
+                    {% for choice in question.choice_set.all %}
+                        <input type="radio" name="question{{ question.id }}" value="{{ choice.id }}"> {{ choice.text }}<br>
+                    {% endfor %}
+                </div>
+            </div>
+        {% endfor %}
+        <button type="submit" class="btn btn-primary">Submit</button>
+    </form>
+</div>
+</body>
+</html>

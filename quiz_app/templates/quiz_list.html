@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Quiz List</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+</head>
+<body>
+<div class="container">
+    <h1>Quiz List</h1>
+    <ul class="list-group">
+        {% for quiz in quizzes %}
+            <li class="list-group-item">
+                <a href="{% url 'quiz_detail' quiz.id %}">{{ quiz.title }}</a>
+            </li>
+        {% endfor %}
+    </ul>
+</div>
+</body>
+</html>
